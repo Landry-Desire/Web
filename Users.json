@@ -1,0 +1,1 @@
+{ "_id" : { "$oid" : "5670211d30c28c450140aa01" }, "pseudo" : "psow", "password" : "passer33", "friends" : [ "desire", "kananie" ], "bills" : [ { "description" : "Budget Birthday Party", "mine" : true, "amount" : 571.5, "splitType" : "EQUAL", "split" : [ { "pseudo" : "psow", "part" : 1 }, { "pseudo" : "desire", "part" : 1 }, { "pseudo" : "kananie", "part" : 1 } ] } ] }
