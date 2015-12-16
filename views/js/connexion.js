@@ -1,7 +1,9 @@
-var app=angular.module('myApp', [])
+var app=angular.module('myApp');
 
 app.controller("connexionCtrl",['$scope','$http','$location', function($scope,$http,$location) {
-
+    
+    alert("ds le controller")
+    
 	$scope.submitLogin= function() {
 		var params =JSON.stringify( { email: $scope.pseudo, password :$scope.password})
 		alert($scope.pseudo,$scope.password)

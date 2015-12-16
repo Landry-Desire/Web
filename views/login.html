@@ -10,7 +10,7 @@
 
 	<div class=" form-signin-signup">
 		<h2> Connexion</h2>
-		<form  class="form-horizontal form-connexion col-sm-5" ng-controller="connexionCtrl">
+		<form  class="form-horizontal form-connexion col-sm-5" ng-controller="connexionCtrl" >
 			<div class="form-group">
 				<label for="inputPseudo" class="col-sm-2 control-label">Pseudo</label>
 				<input type="text" name="email" id="inputPseudo" class="form-control " placeholder="pseudo" ng-model="pseudo" required>
@@ -19,16 +19,17 @@
 				<label for="inputPassword" class="col-sm-2 control-label">Password</label>
 				<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="password" required>
 			</div>
-			<div>
-				<input type="submit" value="connexion" class="btn btn-primary btn-large" ng-click="submitLogin()">
-			</div>
+			
+			<input type="submit" value="connexion" class="btn btn-primary btn-large" ng-click="submitLogin()">
+			
 
 		</form>
 	</div>
 
-    <script type="text/javascript" src="routes.js"></script>  
-    <script type="text/javascript" src="js/connexion.js"></script>   
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 	<script type="text/javascript" src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript" src="routes.js"></script>  
+	<script type="text/javascript" src="js/connexion.js"></script>   
+
 </body>
 </html>

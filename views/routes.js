@@ -3,12 +3,12 @@ var app = angular.module('myApp',['ui.router'])
 //using ui-router
 app.config(function($stateProvider, $urlRouterProvider){   
 	// For any unmatched url, send to /route1
-	$urlRouterProvider.otherwise("/dashboard")
+	$urlRouterProvider.otherwise("/login")
 
 	$stateProvider
 	.state('connexion', {
 		url: "/",
-		templateUrl: "index.html",
+		templateUrl: "login.html",
 		controller: 'connexionCtrl',
 	})
 
