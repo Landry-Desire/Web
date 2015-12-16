@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var UserSch = new Schema({
-	pseudo : String,
+	pseudo : {type:String, unique:true, required:true},
 	password : String,
 	friends : [String],
 	bills : [
@@ -18,9 +18,9 @@ var UserSch = new Schema({
 	]
 });
 
-UserSch.statics.findUser = function (pseudo, callback) {
-	return this.find({pseudo:pseudo});
-}
+/*UserSch.statics.findUser = function (pseudo, callback) {
+	return this.findOne({pseudo:pseudo});
+}*/
 
 var conn 	= mongoose.connect('mongodb://127.0.0.1/Landry-Desire_Web');
 var User 	= conn.model('User', UserSch);
