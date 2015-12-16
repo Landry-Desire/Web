@@ -10,10 +10,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login',function (req, res, next) {
+  console.log(req.session.pseudo); 
+	res.render('login');
+});
 
-  console.log(" login "+req.session.pseudo);
-    res.send('Nothing yet');
-})
+
 router.post('/signup',function (req, res, next) {
 	var userBody =  req.body
 	var u = new User();

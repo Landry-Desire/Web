@@ -13,9 +13,12 @@ app.config(function($stateProvider, $urlRouterProvider){
 	})
 
 
+
 	.state('dashboard', {
 		url: "/dashboard",
 		templateUrl: "partials/dashboard.html",
 		controller: 'dashboardCtrl',
 	})
+
+]})
 
