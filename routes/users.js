@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login',function (req, res, next) {
-	res.send('Nothing yet');
+	res.render('login');
 })
 router.post('/signup',function (req, res, next) {
 	var userBody =  req.body
