@@ -10,8 +10,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login',function (req, res, next) {
-	res.send('Nothing yet');
-})
+  console.log(req.session.pseudo); 
+	res.render('login');
+});
+
 router.post('/signup',function (req, res, next) {
 	var userBody =  req.body
 	var u = new User();
@@ -35,31 +37,28 @@ router.post('/signup',function (req, res, next) {
 	
 });
 
-router.post('/login', function (req, res,next) {
-  var user = req.body;
-  var query = User.findUser(user.pseudo); 
-  query.exec(function (err, comms) {
-    if (err) { throw err; }
-    var comm;
-      for (var i = 0, l = comms.length; i < l; i++) {
-          comm = comms[i];
-          req.session = comm._id;
-          console.log(req.session);
-          console.log('------------------------------');
-          console.log('_id : ' + comm._id);
-          console.log('Pseudo : ' + comm.pseudo);
-          console.log('password : ' + comm.password);
-          console.log('------------------------------');
+router.post('/login',function(req,res,next){
+  var users = req.body;
+  User.findOne({'pseudo':users.pseudo},function(err,user){
+    if(err)
+      console.log(err);
+    if(user){
+        console.log(user)
+        req.session.pseudo = user.pseudo;
+        console.log(req.session.pseudo)
+        if(user.pseudo==users.pseudo && user.password==users.password){
+          res.send({'success':'ok'})
+          //res.require('/')
+        }else if(user.pseudo==users.pseudo && user.password!=users.password)
+        {
+          res.send({'error':'User or password not found'})
+        }
+    }else{
+      res.send({'error':'bad user!'})
+    }
+  });
 
-          if(user.password != comm.password){
-            res.send("err")
-          }else if(user.password == comm.password){
-            res.send('ok')
-          }else{
-            res.send('err')
-          }
-      }
-    })
+
 });
 
 module.exports = router;
