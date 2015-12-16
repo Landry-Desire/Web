@@ -1,8 +1,28 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Bienvenu</title>
+	<link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	<link href="../node_modules/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
 </head>
-<body>
-	Hello index to #{title}
+<body ng-app="myApp">
+
+
+	<div class="form-horizontal form-signin-signup" style="text-align:center;margin-left=20%;margin-right: 20%">
+	<h2> Connexion</h2>
+		<form  class="form-connexion" ng-controller="connexionCtrl">
+			pseudo :<input type="text" name="email" placeholder="pseudo" ng-model="pseudo" required> <br>
+			password:<input type="password" name="password" placeholder="Password" ng-model="password" required>
+			<div>
+				<input type="submit" value="connexion" class="btn btn-primary btn-large" ng-click="submitLogin()">
+			</div>
+
+		</form>
+	</div>
+
+    <script type="text/javascript" src="routes.js"></script>  
+    <script type="text/javascript" src="js/connexion.js"></script>   
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+	<script type="text/javascript" src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
 </body>
 </html>
