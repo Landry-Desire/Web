@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/login',function (req, res, next) {
 
-  console.log(req.session.pseudo);
+  console.log(" login "+req.session.pseudo);
     res.send('Nothing yet');
 })
 router.post('/signup',function (req, res, next) {
@@ -57,8 +57,13 @@ router.post('/login',function(req,res,next){
       res.send({'error':'bad user!'})
     }
   });
-
-
 });
+
+router.get('/logout', function (req, res) {
+   delete req.session.pseudo;
+   console.log(req.session.pseudo);
+   res.send("deconnection"+req.session.pseudo);
+   //res.redirect('/login');
+}); 
 
 module.exports = router;
