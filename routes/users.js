@@ -2,7 +2,7 @@ var express = require('express');
 var session = require('express-session');
 var router = express.Router();
 
-var User = require('./userModel').User;
+var User = require('../model/userModel').User;
 
 router.get('/', function(req, res, next) {
   res.send({'SESSION_VAR':req.session});
