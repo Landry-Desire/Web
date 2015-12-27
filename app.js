@@ -17,6 +17,13 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+//routing angular 
+app.get('/partials/:name', function (req, res) {
+  var name = req.params.name;
+  res.render('partials/' + name);
+});
+
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
