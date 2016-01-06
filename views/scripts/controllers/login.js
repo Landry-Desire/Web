@@ -7,7 +7,6 @@ angular.module('Login')
     $scope.signin = function(){
     	LoginService.login($scope.email,$scope.pwd,function(response){
     		$window.location.href="#/home"
-        /*console.log('response',response);*/
     	});
     }
   }])

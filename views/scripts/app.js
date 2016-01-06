@@ -15,6 +15,7 @@ angular.module('Signup',[]);
 angular.module('Friends',['ngCookies']);
 
 
+
 angular
   .module('webProject', [
     'ngRoute',
@@ -49,9 +50,8 @@ angular
         $rootScope.globals = $cookies.globals || {};
         console.log($rootScope.globals);
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-           /* console.log('page refresh ',$cookies.globals.currentUser.id);*/
-            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-                $location.path('/login');
-            }
+        	if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+        		$location.path('/login');
+        	}
         });
     }]);
