@@ -10,34 +10,37 @@
  * Main module of the application.
  */
 
- angular.module('Login',[]);
- angular.module('Home',[]);
+angular.module('Login',['ngCookies']);
+angular.module('Signup',[]);
+angular.module('Home',['ngCookies']);
 
 
- angular
- .module('webProject', [
- 	'ngRoute',
- 	'ngCookies',
- 	'Login',
- 	'Home'
- 	])
- .config(function ($routeProvider) {
- 	$routeProvider
- 	.when('/login', {
- 		templateUrl: 'partials/login.html',
- 		controller: 'LoginCtrl',
- 	})
-
- 	$routeProvider
- 	.when('/home', {
- 		templateUrl: 'partials/home.html',
- 		controller: 'homeCtrl',
- 	})
-
- 	.otherwise({templateUrl: 'partials/404.html'})
- })
- .run(['$rootScope', '$location', '$cookies', '$http',
- 	function ($rootScope, $location, $cookies) {
+angular
+  .module('webProject', [
+    'ngRoute',
+    'ngCookies',
+    'Login',
+    'Signup',
+    'Home'
+  ])
+  .config(function ($routeProvider) {
+    $routeProvider
+      .when('/login', {
+        templateUrl: 'partials/login.html',
+        controller: 'LoginCtrl',
+      })
+      .when('/home', {
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl',
+      })
+      .when('/signup', {
+        templateUrl: 'partials/signup.html',
+        controller: 'SignupCtrl',
+      })
+      .otherwise({templateUrl: 'partials/404.html'})
+  })
+  .run(['$rootScope', '$location', '$cookies', '$http',
+    function ($rootScope, $location, $cookies) {
         // keep user logged in after page refresh
         $rootScope.globals = $cookies.globals || {};
         console.log($rootScope.globals);
