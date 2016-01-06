@@ -9,6 +9,7 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var friends = require('./routes/friends');
+var bills = require('./routes/bills');
 
 var app = express();
 
@@ -48,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/bills', bills);
 app.use('/friends', friends);
 
 // catch 404 and forward to error handler
