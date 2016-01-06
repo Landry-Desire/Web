@@ -17,6 +17,10 @@ app.config(function($stateProvider, $urlRouterProvider){
 		url: "/home",
 		templateUrl: "partials/home",
 		controller: 'homeCtrl',
+		data: {
+			authorization: true,
+			redirectTo: 'login'
+		}
 	})
 
 
@@ -36,4 +40,3 @@ app.config(function($stateProvider, $urlRouterProvider){
 	})
 
 })
-
