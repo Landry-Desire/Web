@@ -10,7 +10,8 @@
  * Main module of the application.
  */
 
-angular.module('Login',[]);
+angular.module('Login',['ngCookies']);
+angular.module('Signup',[]);
 
 
 angular
@@ -18,12 +19,17 @@ angular
     'ngRoute',
     'ngCookies',
     'Login',
+    'Signup'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
+      })
+      .when('/signup', {
+        templateUrl: 'partials/signup.html',
+        controller: 'SignupCtrl',
       })
       .otherwise({templateUrl: 'partials/404.html'})
   })
