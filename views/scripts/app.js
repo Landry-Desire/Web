@@ -12,6 +12,7 @@
 
 angular.module('Login',['ngCookies']);
 angular.module('Signup',[]);
+angular.module('Friends',['ngCookies']);
 
 
 angular
@@ -19,13 +20,22 @@ angular
     'ngRoute',
     'ngCookies',
     'Login',
-    'Signup'
+    'Signup',
+    'Friends'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
+      })
+      .when('/home', {
+        templateUrl: 'partials/home.html',
+        controller: 'FriendsCtrl',
+      })
+      .when('/friends', {
+        templateUrl: 'partials/friends.html',
+        controller: 'FriendsCtrl',
       })
       .when('/signup', {
         templateUrl: 'partials/signup.html',
@@ -39,7 +49,7 @@ angular
         $rootScope.globals = $cookies.globals || {};
         console.log($rootScope.globals);
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            console.log('page refresh ',$cookies.globals.currentUser.id);
+           /* console.log('page refresh ',$cookies.globals.currentUser.id);*/
             if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
                 $location.path('/login');
             }
