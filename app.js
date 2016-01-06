@@ -18,12 +18,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 //routing angular 
-app.get('/partials/:name', function (req, res) {
+/*app.get('/partials/:name', function (req, res) {
   var name = req.params.name;
   res.render('partials/' + name);
 });
+app.get('/styles/:name', function (req, res) {
+  var name = req.params.name;
+  res.render('styles/' + name);
+});
+app.get('/scripts/:name', function (req, res) {
+  var name = req.params.name;
+  res.render('partials/' + name);
+});*/
 
-
+app.get('/:n', function (req, res){
+  res.sendFile(__dirname+'/views/'+n);
+});
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -33,7 +43,7 @@ app.use(cookieParser());
 app.use(session({secret:"projetweb"}))
 
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
 //app.use(express)
 
 app.use('/', routes);
