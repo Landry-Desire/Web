@@ -1,4 +1,4 @@
-app.controller("loginCtrl",['$scope','$http','$location', function($scope,$http,$location) {
+app.controller("loginCtrl",['$scope','$http','$location','Authorization', function($scope,$http,$location,Authorization) {
 	//alert("ds le controller login");
 
 	$scope.submitLogin= function() {
@@ -7,7 +7,8 @@ app.controller("loginCtrl",['$scope','$http','$location', function($scope,$http,
 		.success(function(status) {
 			console.log(JSON.stringify(status))
 			if(status.success==true){
-				$location.url('/home');
+				Authorization.go('home');
+				//$location.url('/home');
 
 			} else if(status.message == "User not found"){
 				alert(JSON.stringify(status.message)+", please sign up!")
