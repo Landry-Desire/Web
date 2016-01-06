@@ -13,6 +13,7 @@
 angular.module('Login',['ngCookies']);
 angular.module('Signup',[]);
 angular.module('Friends',['ngCookies']);
+angular.module('Home',['ngCookies']);
 
 
 
@@ -22,6 +23,7 @@ angular
     'ngCookies',
     'Login',
     'Signup',
+    'Home',
     'Friends'
   ])
   .config(function ($routeProvider) {
@@ -32,7 +34,7 @@ angular
       })
       .when('/home', {
         templateUrl: 'partials/home.html',
-        controller: 'FriendsCtrl',
+        controller: 'HomeCtrl',
       })
       .when('/friends', {
         templateUrl: 'partials/friends.html',
