@@ -6,8 +6,8 @@ angular.module('Login')
     $scope.pwd = "passer33";
     $scope.signin = function(){
     	LoginService.login($scope.email,$scope.pwd,function(response){
-    		/*$window.location.href="/ecommerce/app/#/mine"*/
-        console.log('response',response);
+    		$window.location.href="/"
+        /*console.log('response',response);*/
     	});
     }
   }])
