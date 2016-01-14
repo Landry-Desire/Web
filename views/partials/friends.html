@@ -1,0 +1,15 @@
+<div id="friendsPanel">
+	<form class="form-inline">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search friends" list="cards" ng-model="u" />
+			<datalist id="cards">
+				<option ng-repeat="item in allUsers" value="{{item.pseudo}}" />
+			</datalist>
+		</div>
+		<button type="submit" class="btn btn-default" ng-disabled="in()" ng-click="addFriend()">Add <span>{{u}}</span></button>
+	</form>
+	<h2> My Friends </h2>
+	<ul>
+		<li ng-repeat="f in me.friends"><a href="#">{{f}}</a></li>
+	</ul>
+</div>

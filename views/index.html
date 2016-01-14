@@ -1,36 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Bienvenu</title>
-	<link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-	<link href="../node_modules/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
-	<script type="text/javascript" src="routes.js"></script>  
-	<script type="text/javascript" src="js/connexion.js"></script> 
-</head>
-<body>
+<!doctype html>
+<html ng-app="webProject">
+  <head>
+    <meta charset="utf-8">
+    <title>Web Project</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
 
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- endbuild -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-	<div ng-app="myApp" ng-controller="connexionCtrl" style="text-align:center;margin-left=20%;margin-right: 20%;" >
+  </head>
+  <body >
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-		<h2> Connexion</h2><br>
-		<form  class="form-connexion" >
-			pseudo :<input type="text" name="email" placeholder="pseudo" ng-model="pseudo" required> <br>
-			password:<input type="password" name="password" placeholder="Password" ng-model="password" required>
-			<div>
-				<input type="submit" value="connexion" class="btn btn-primary btn-large" ng-click="submitLogin()">
-			</div>
+    <!-- Add your site or application content here -->
+    <div class="header" ng-controller="HeaderCtrl">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
 
-		</form>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
 
-		<h4>
-			<i class="icon-question-sign"></i> pas de compte?
-		</h4>
-		<a href="#/inscription" class="btn btn-large bottom-space">Inscription</a>
-	</div>
+            <a class="navbar-brand" href="#/">WebProject</a>
+          </div>
 
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<script type="text/javascript" src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-  
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#/home">Home</a></li>
+              <li><a ng-href="#/friends">Friends</a></li>
+              <li><a ng-href="#/profile">Profile Management</a></li>
+              <li><a ng-href="#" ng-click="logout()"><span class="glyphicon glyphicon-off"></span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div ng-view=""></div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p><span class="glyphicon glyphicon-heart"></span> By <i>papsow</i>, <i>landry</i> and <i>Kanani</i></p>
+      </div>
+    </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-cookies.min.js"></script>
+        
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/home.js"></script>
+        <script src="scripts/controllers/signup.js"></script>
+        <script src="scripts/controllers/friends.js"></script>
 </body>
 </html>

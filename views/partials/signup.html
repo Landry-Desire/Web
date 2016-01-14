@@ -1,0 +1,23 @@
+<div id="signupPanel" style="width:50%">
+	<h2><span class="glyphicon glyphicon-lock"></span> Inscription </h2
+	<form class="form-horizontal" ng-submit="inscription()" role="form" name="form">
+		<div class="form-group">
+			<label for="email" class="control-label"> Email </label>
+			<input type="email" class="form-control" ng-model="email" id="email" placeholder="Your Email">
+		</div>
+		<div class="form-group">
+			<label for="pwd" class="control-label"> Password </label>
+			<input type="password" class="form-control" ng-model="pwd" id="pwd" placeholder="Your Password">
+		</div>
+		<div class="form-group">
+			<label for="confpwd" class="control-label">Confirmation Password </label>
+			<input type="password" class="form-control" ng-model="confpwd" id="confpwd" placeholder="Confirmation Your Password">
+		</div>
+		<div class="form-group">
+			<div >
+				<button class="btn btn-default" type="submit" ng-click="signup()">Valider</button>
+			</div>
+			
+		</div>
+	</form>
+</div>
