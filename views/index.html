@@ -20,7 +20,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
+    <div class="header" ng-controller="HeaderCtrl">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -41,6 +41,7 @@
               <li class="active"><a href="#/home">Home</a></li>
               <li><a ng-href="#/friends">Friends</a></li>
               <li><a ng-href="#/profile">Profile Management</a></li>
+              <li><a ng-href="#" ng-click="logout()"><span class="glyphicon glyphicon-off"></span></a></li>
             </ul>
           </div>
         </div>

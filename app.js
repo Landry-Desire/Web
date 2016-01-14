@@ -32,9 +32,9 @@ app.get('/scripts/:name', function (req, res) {
   res.render('partials/' + name);
 });*/
 
-app.get('/:n', function (req, res){
+/*app.get('/:n', function (req, res){
   res.sendFile(__dirname+'/views/'+n);
-});
+});*/
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -54,6 +54,7 @@ app.use('/friends', friends);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log('error');
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -66,10 +67,11 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.send(err);
+    /*res.render('error', {
       message: err.message,
       error: err
-    });
+    });*/
   });
 }
 
@@ -77,11 +79,11 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.send(err);
+  /*res.render('error', {
     message: err.message,
     error: {}
-  });
+  });*/
 });
-
 
 module.exports = app;

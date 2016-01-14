@@ -4,8 +4,14 @@ var router = express.Router();
 
 var User = require('../model/userModel').User;
 
-router.get('/', function(req, res, next) {
-	res.send({'SESSION_VAR':req.session});
+router.get('/all', function(req, res, next) {
+	console.log(">>>/all");
+	User.find({},{pseudo:1},function(err,r){
+		if(err)
+			res.send(err);
+		else
+			res.send(r);
+	})
 });
 
 router.get('/login',function (req, res, next) {
@@ -16,6 +22,20 @@ router.get('/signup',function (req, res, next) {
 	res.render('signup');
 });
 
+router.put('/',function (req,res,next) {
+	var user = req.body;
+	console.log(user);
+	User.update({'pseudo':user.pseudo},
+		{
+			$set : {"friends":user.friends}	
+		},function (err, r) {
+			if(err){
+				console.log('err',err);
+				res.send({'error':err});
+			}
+			res.send(r);
+		});
+});
 router.post('/signup',function (req, res, next) {
 	var userBody =  req.body
 	var u = new User();
@@ -58,6 +78,7 @@ router.post('/login',function(req,res,next){
 			}); 
 		if(user){
 			console.log(user)
+			req.session.user = user;
 			req.session.pseudo = user.pseudo;
 			console.log(req.session.pseudo)
 			if(user.pseudo==users.pseudo && user.password==users.password){
@@ -82,12 +103,20 @@ router.post('/login',function(req,res,next){
 	});
 });
 
-router.get('/logout', function (req, res) {
+router.post('/logout', function (req, res) {
 	delete req.session.pseudo;
 	res.send({
 		'message':'User Logged Out',
 		'success':true
 	});
 }); 
+
+router.get('/', function(req, res, next) {
+	User.findOne({'pseudo':req.session.user.pseudo},function(err,user){
+		if(err)
+			res.send(err);
+		res.send(user);
+	});
+});
 
 module.exports = router;

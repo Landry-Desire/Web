@@ -26,6 +26,15 @@ angular
     'Home',
     'Friends'
   ])
+  .controller('HeaderCtrl', ['$scope','$rootScope','$window', '$cookies', function($scope,$rootScope,$window,$cookies){
+      $scope.logout = function () {
+        console.log('loging out');
+        $rootScope.globals = undefined;
+        $cookies = null;
+        console.log('logged out');
+        $window.location.href="#/login"
+      }
+  }])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/login', {
@@ -50,8 +59,9 @@ angular
     function ($rootScope, $location, $cookies) {
         // keep user logged in after page refresh
         $rootScope.globals = $cookies.globals || {};
-        console.log($rootScope.globals);
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
+          if($rootScope.globals==undefined)
+            $location.path('/login');
         	if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
         		$location.path('/login');
         	}

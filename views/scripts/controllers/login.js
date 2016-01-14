@@ -13,17 +13,14 @@ angular.module('Login')
   .factory('LoginService',['$http','$rootScope' ,'$cookies'
   	,function($http, $rootScope,$cookies){
   		var service = {};
-  		console.log($cookies);
   		service.login = function(email, pwd, cb){
   			$http.post('/users/login/',{
   				"pseudo": email,
   				"password":pwd
   			}).success(function(response){
-  				console.log('success ',response);
-  				service.setSession(response)
+  				service.setSession(email)
   				cb(response);
   			}).error(function(response){
-  				console.log('failed ',response);
   				cb(response);
   			});
   		}
@@ -32,13 +29,13 @@ angular.module('Login')
                 currentUser: user
             };
             $cookies.globals = $rootScope.globals;
-            console.log($cookies.globals.currentUser);
+            
   		}
   		service.destroySession = function(){
   			$rootScope.globals= {}
   			$cookieStore.remove('globals');
   		}
-  		console.log('Init Service Login');
+  		
   		return service;
 
   }]);
