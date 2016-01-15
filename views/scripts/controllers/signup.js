@@ -2,9 +2,9 @@
 
 angular.module('Signup')
   .controller('SignupCtrl', ['$scope','$http', '$location' ,function ($scope,$http,$location) {
-    $scope.email = "ouz";
-    $scope.pwd = "repasser33";
-    $scope.confpwd= "repasser33"
+    $scope.email = "psow";
+    $scope.pwd = "passer33";
+    $scope.confpwd= "passer33"
     $scope.signup = function(){
         console.log('signup');
         var cb = function(r){

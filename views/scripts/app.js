@@ -58,12 +58,14 @@ angular
   .run(['$rootScope', '$location', '$cookies', '$http',
     function ($rootScope, $location, $cookies) {
         // keep user logged in after page refresh
-        $rootScope.globals = $cookies.globals || {};
+        /*$rootScope.globals = $cookies.globals || {};*/
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-          if($rootScope.globals==undefined)
-            $location.path('/login');
-        	if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-        		$location.path('/login');
+          console.log('locationChanged',$location.path()!="/signup");
+        	if (($location.path() != "/login" && $location.path() != "/signup")) {
+            console.log('/login or /signup');
+        		if($rootScope.globals==undefined)
+              $location.path('/login');
         	}
+        
         });
     }]);

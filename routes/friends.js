@@ -40,8 +40,9 @@ router.get('/mine', function(req, res, next) {
 });
 
 router.post('/add', function(req, res, next){
-	var me = req.session.pseudo;
+	var me = req.session.user.pseudo;
 	var him = req.body.pseudo;
+	console.log(me, him);
 	User.findOne({'pseudo':me}, function(err, u){
 		if(err)
 			res.send({
@@ -49,6 +50,7 @@ router.post('/add', function(req, res, next){
 		        'success':false
 		    });
 		if(u){
+			console.log('got user '+me);
 			res.send(User.addFriend(u,him));
 		}else{
 			res.send({

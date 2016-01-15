@@ -41,7 +41,7 @@ router.post('/signup',function (req, res, next) {
 	var u = new User();
 	User.findOne({'pseudo':userBody.pseudo},function (err,user) {
 		if(err)
-			res.send({
+			return res.send({
 				'message':err,
 				'success':false
 			});
@@ -55,7 +55,7 @@ router.post('/signup',function (req, res, next) {
 			u.password = userBody.password;
 			u.save(function (err) {
 				if (err)
-					res.send({
+					return res.send({
 						'message':err,
 						'success':false
 					});
@@ -70,26 +70,26 @@ router.post('/signup',function (req, res, next) {
 
 router.post('/login',function(req,res,next){
 	var users = req.body;
+	console.log(users);
 	User.findOne({'pseudo':users.pseudo},function(err,user){
 		if(err)
-			res.send({
+			return res.send({
 				'message':err,
 				'success':false
 			}); 
 		if(user){
-			console.log(user)
-			req.session.user = user;
-			req.session.pseudo = user.pseudo;
-			console.log(req.session.pseudo)
-			if(user.pseudo==users.pseudo && user.password==users.password){
+			console.log('u',user)
+			if(user.password==users.password){
+				req.session.user = user;
+				req.session.pseudo = user.pseudo;
 				res.send({
 					'message':'User <i> '+user.pseudo+' </i> authenticated !',
 					'success':true
 				});
-			}else if(user.pseudo==users.pseudo && user.password!=users.password)
-			{
+			}
+			else {
 				res.send({
-					'message':'user not found',
+					'message':'Wrong Pwd',
 					'success':false
 				});
 			}

@@ -9,7 +9,7 @@ angular.module('Friends')
 	    $scope.addFriend=function () {
 	    	var u = angular.copy($scope.me);
 	    	u.friends.push($scope.u);
-	    	$http.put('/users',u)
+	    	$http.post('/friends/add',{"pseudo":$scope.u})
 	    	.success(function (r) {
 	    		console.log('Friend added',r);
 	    		$scope.getMe();
