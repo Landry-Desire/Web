@@ -4,9 +4,17 @@ angular.module('Login')
   .controller('LoginCtrl', ['$scope', '$window', 'LoginService', function ($scope, $window, LoginService) {
     $scope.email = "psow";
     $scope.pwd = "passer33";
-    $scope.signin = function(){
+    $scope.login = function(){
     	LoginService.login($scope.email,$scope.pwd,function(response){
-    		$window.location.href="#/home"
+        console.log($scope.email,$scope.pwd);
+        if(response.success){
+          console.log(response.message);
+          $window.location.href="#/home"
+        }else{
+          alert(response.message);
+          console.log(response.message);
+        }
+          
     	});
     }
   }])
@@ -14,6 +22,7 @@ angular.module('Login')
   	,function($http, $rootScope,$cookies){
   		var service = {};
   		service.login = function(email, pwd, cb){
+        console.log(email,pwd);
   			$http.post('/users/login/',{
   				"pseudo": email,
   				"password":pwd
