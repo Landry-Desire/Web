@@ -38,7 +38,7 @@
 
   $scope.isNotConnected = function(){
     // console.log(( $cookies.globals == undefined || $cookies.globals == {}));
-   return( $cookies.globals == undefined || $cookies.globals == {});
+    return( $cookies.globals == undefined || $cookies.globals == {});
   }
 
 }])
@@ -67,20 +67,13 @@
         // keep user logged in after page refresh
         /*$rootScope.globals = $cookies.globals || {};*/
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-<<<<<<< HEAD
-          if($rootScope.globals==undefined)
-            $location.path('/login');
-          if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-            $location.path('/login');
-          }
-=======
+
           console.log('locationChanged',$location.path()!="/signup");
-        	if (($location.path() != "/login" && $location.path() != "/signup")) {
+          if (($location.path() != "/login" && $location.path() != "/signup")) {
             console.log('/login or /signup');
-        		if($rootScope.globals==undefined)
+            if($rootScope.globals==undefined)
               $location.path('/login');
-        	}
-        
->>>>>>> 4fd093a2d8587ef0b6481435d82127d67f89e239
+          }
+          
         });
       }]);
