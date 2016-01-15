@@ -12,7 +12,7 @@ router.post('/AddBills', function(req,res){
     console.log(" req.session.pseudo ", req.session.pseudo);
     console.log("user",u);
       if(err)
-        res.send({
+        return res.send({
           'message':err,
           'success':false
        });
