@@ -58,7 +58,7 @@ router.get('/RecupBills',function(req,res){
   
 */
 //Add Friends --> bills
-router.p('/friendsBills/:index',function(req,res){
+router.post('/friendsBills/:index',function(req,res){
   var bill =  req.body.bill;
   var friend = req.body.pseudo; 
   //console.log("body",friendsBodyBills);

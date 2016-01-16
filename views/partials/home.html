@@ -1,4 +1,4 @@
-<div id="homePanel">
+<div id="homePanel" ng-controller="HomeCtrl">
 
 	<button class="btn btn-default"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"> add bill</span></button> 
 	
@@ -14,20 +14,20 @@
 					<form class="form-horizontal" role="form" name="form">
 						<div class="form-group">
 							<label for="title" class="control-label"> Description</label>
-							<input type="text" class="form-control" ng-model="bill.Description" id="description" placeholder="description">
+							<input type="text" class="form-control" ng-model="bill.description" id="description" placeholder="description">
 						</div>
 						<div class="form-group ">
 							<label for="price" class="control-label"> Amount </label>
-							<input type="number" class="form-control" style="width:30%" ng-model="bill.Amount" id="price" placeholder="Amount">
+							<input type="number" class="form-control" style="width:30%" ng-model="bill.amount" id="price" placeholder="Amount">
 						</div>
 
 						<div class="form-group ">
 							<label for="surface" class="control-label"> SplitType </label>
-							<select class="selectpicker" ng-model="bill.SplitType">
+							<select class="selectpicker" ng-model="bill.splitType">
 								<option value="EQUAL">Equal split</option>
 							</select>
 						</div>
-                        <br> 
+						<br> 
 						<button class="btn btn-default" type="submit" ng-click="addBill()">Post</button>
 
 					</form>
@@ -46,12 +46,19 @@
 	<div  id="list-bills" >
 		<h2>MY BILLS</h2>
 		<ul class="list-group" ng-repeat="bill in allBills.success">
-			<li class="list-group-item">
-				{{bill.description}} <br>
-				{{bill.amount}} &nbsp;&euro;<br>
-				{{bill.splitType}} Splits
+			<a ng-click="billDetails(bill._id)" title="bill.description" style="text-decoration :none" >
+				
+				<li class="list-group-item"> 
 
-			</li>
+					<h3>
+						{{bill.description}}
+					</h3> <br>
+					{{bill.amount}} &nbsp;&euro;<br>
+					{{bill.splitType}} Splits
+
+				</li>
+			</a>
+
 		</ul>
 
 	</div>

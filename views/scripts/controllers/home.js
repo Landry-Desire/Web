@@ -1,21 +1,22 @@
 'use strict';
 
 angular.module('Home')
-.controller('HomeCtrl',["$scope","$http","$cookies",function($scope,$http,$cookies){
+.controller('HomeCtrl',["$scope","$http","$cookies",'$window',function($scope,$http,$cookies,$window){
 
 	$scope.bill ={};
 	$scope.allBills ={}
+	$scope.allUsers=[]
 
 	$scope.addBill=function(){
 		var params ={ 
-			description: $scope.bill.Description,
-			amount :$scope.bill.Amount,
-			splitType: $scope.bill.SplitType
+			description: $scope.bill.description,
+			amount :$scope.bill.amount,
+			splitType: $scope.bill.splitType
 		}
 		$http.post('/bills/AddBills',params)
 		.success(function (r) {
 			alert('Bill added',r);
-		    $scope.getAllBills();
+			$scope.getAllBills();
 		}).error(function (r) {
 			console.log('Bill not added',r);
 		})
@@ -32,13 +33,17 @@ angular.module('Home')
 			}
 			//alert("ALL BILLS :"+JSON.stringify(r.message))
 			$scope.allBills = r;
-            $scope.getMe();
+			$scope.getMe();
 		})
 		.error(function(r){
 			return r;
 		})
 	}
 
+	$scope.billDetails =function(id){
+		$window.location.href="#/bill/"+id
+		console.log(JSON.stringify(id));
+	}
 
 	$scope.getMe = function(){
 		$http.get('/users/')
@@ -51,6 +56,7 @@ angular.module('Home')
 
 	}
 
+	//$scope.getAllUsers();
 	$scope.getAllBills();
 	$scope.getMe();
 
