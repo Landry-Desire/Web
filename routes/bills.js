@@ -58,9 +58,10 @@ router.get('/RecupBills',function(req,res){
   
 */
 //Add Friends --> bills
-router.p('/friendsBills/:index',function(req,res){
-  var bill =  req.body.bill;
+router.put('/friendsBills/:index',function(req,res){
   var friend = req.body.pseudo; 
+  var friendsBodyBills = req.body;
+  var billsfriends;
   //console.log("body",friendsBodyBills);
    User.findOne({'pseudo':req.session.pseudo},function(err,u){
       if(err)
@@ -74,10 +75,11 @@ router.p('/friendsBills/:index',function(req,res){
             'success':false
         });
       }else{
-          console.log(" index " + u.bills[req.params.index]);
-          var userFriends = new User();
+          //console.log(" index " + u.bills[req.params.index]);
+          //var userFriends = new User();
           u.bills[req.params.index].split.push(friendsBodyBills);
-          userFriends.pseudo = req.body.pseudo;
+          billsfriends = u.bills[req.params.index];
+          //userFriends.pseudo = req.body.pseudo;
           u.save(function (err) {
             if (err)
               res.send({
@@ -91,7 +93,7 @@ router.p('/friendsBills/:index',function(req,res){
       });   
      }
    });
-
+   console.log("friend " +friend );
    User.findOne({'pseudo':friend},function(err,user){
     if(err)
         res.send({
@@ -104,7 +106,8 @@ router.p('/friendsBills/:index',function(req,res){
             'success':false
         });
       }else{
-        user.bills.push(u.bills[req.params.index])
+        user.bills.push(billsfriends);
+        user.bills[req.params.index].mine="false";
         user.save(function(err){
           if(err)
             res.send({
@@ -117,7 +120,7 @@ router.p('/friendsBills/:index',function(req,res){
         }); 
         });
       }
-   })
+   });
 
 });
 module.exports = router;
