@@ -75,11 +75,9 @@ router.put('/friendsBills/:index',function(req,res){
             'success':false
         });
       }else{
-          //console.log(" index " + u.bills[req.params.index]);
-          //var userFriends = new User();
           u.bills[req.params.index].split.push(friendsBodyBills);
           billsfriends = u.bills[req.params.index];
-          //userFriends.pseudo = req.body.pseudo;
+          
           u.save(function (err) {
             if (err)
               res.send({
@@ -87,40 +85,39 @@ router.put('/friendsBills/:index',function(req,res){
                 'success':false
               });
             else
-              res.send({
+              console.log("friend " +friend );
+               User.findOne({'pseudo':friend},function(err,user){
+                if(err)
+                    res.send({
+                      "message":err,
+                      "success":false
+                    });
+                  if(!user){
+                    res.send({
+                        'message':'user not exists 1',
+                        'success':false
+                    });
+                  }else{
+                    user.bills.push(billsfriends);
+                    user.bills[req.params.index].mine=false;
+                    user.save(function(err){
+                      if(err)
+                        res.send({
+                           'message':err,
+                            'success':false
+                          });
+                      else
+                         res.send({
+                           'success':true
+                    }); 
+                    });
+                  }
+               });
+           /*   res.send({
                'success':true
-        });
+        });*/
       });   
      }
    });
-   console.log("friend " +friend );
-   User.findOne({'pseudo':friend},function(err,user){
-    if(err)
-        res.send({
-          "message":err,
-          "success":false
-        });
-      if(!user){
-        res.send({
-            'message':'user not exists',
-            'success':false
-        });
-      }else{
-        user.bills.push(billsfriends);
-        user.bills[req.params.index].mine="false";
-        user.save(function(err){
-          if(err)
-            res.send({
-               'message':err,
-                'success':false
-              });
-          else
-             res.send({
-               'success':true
-        }); 
-        });
-      }
-   });
-
 });
 module.exports = router;
