@@ -62,6 +62,7 @@ router.put('/friendsBills/:index',function(req,res){
   var friend = req.body.pseudo; 
   var friendsBodyBills = req.body;
   var billsfriends;
+  var i;
   //console.log("body",friendsBodyBills);
    User.findOne({'pseudo':req.session.pseudo},function(err,u){
       if(err)
@@ -77,7 +78,7 @@ router.put('/friendsBills/:index',function(req,res){
       }else{
           u.bills[req.params.index].split.push(friendsBodyBills);
           billsfriends = u.bills[req.params.index];
-          
+            
           u.save(function (err) {
             if (err)
               res.send({
@@ -98,8 +99,8 @@ router.put('/friendsBills/:index',function(req,res){
                         'success':false
                     });
                   }else{
+                    billsfriends.mine=false;
                     user.bills.push(billsfriends);
-                    user.bills[req.params.index].mine=false;
                     user.save(function(err){
                       if(err)
                         res.send({
