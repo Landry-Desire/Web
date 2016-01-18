@@ -67,7 +67,6 @@
         // keep user logged in after page refresh
         /*$rootScope.globals = $cookies.globals || {};*/
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-
           console.log('locationChanged',$location.path()!="/signup");
           if (($location.path() != "/login" && $location.path() != "/signup")) {
             console.log('/login or /signup');

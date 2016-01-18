@@ -1,8 +1,5 @@
 <div id="homePanel">
-
 	<button class="btn btn-default"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"> add bill</span></button> 
-	
-
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -23,8 +20,9 @@
 
 						<div class="form-group ">
 							<label for="surface" class="control-label"> SplitType </label>
-							<select class="selectpicker" ng-model="bill.SplitType">
+							<select class="selectpicker form-control" style="width:30%" ng-model="bill.SplitType">
 								<option value="EQUAL">Equal split</option>
+								<option value="PART">PART split</option>
 							</select>
 						</div>
                         <br> 
@@ -38,11 +36,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
 	<div  id="list-bills" >
 		<h2>MY BILLS</h2>
 		<ul class="list-group" ng-repeat="bill in allBills.success">
@@ -53,13 +46,7 @@
 
 			</li>
 		</ul>
-
 	</div>
-
-
-
-
-
 </div>
 
 
