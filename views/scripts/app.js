@@ -1,6 +1,5 @@
 /*app.js*/
 'use strict';
-
 /**
  * @ngdoc overview
  * @name webProject
@@ -33,15 +32,17 @@
  	$scope.logout = function () {
  		console.log('loging out');
  		$rootScope.globals = undefined;
- 		$cookies = null;
+ 		$cookies.remove('globals');
+ 		//$cookies = null;
  		console.log('logged out');
  		$window.location.href="#/login"
  	}
 
  	$scope.isNotConnected = function(){
     // console.log(( $cookies.globals == undefined || $cookies.globals == {}));
-        return($cookies.globals == undefined || $cookies.globals == {});
-    }
+    return(angular.toJson($cookies.get("globals")) == undefined || angular.toJson($cookies.get("globals"))== {});
+}
+
 
 }])
  .config(function ($routeProvider) {
@@ -77,7 +78,7 @@
         	console.log('locationChanged',$location.path()!="/signup");
         	if (($location.path() != "/login" && $location.path() != "/signup")) {
         		console.log('/login or /signup');
-        		if($rootScope.globals==undefined)
+        		if($cookies.get("globals")==undefined)
         			$location.path('/login');
         	}
         });

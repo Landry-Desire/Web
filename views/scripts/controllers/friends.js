@@ -30,7 +30,7 @@ angular.module('Friends')
 	    	$http.get('/users/all')
 	    	.success(function(r){
 	    		for(var i in r){
-	    			if(r[i].pseudo==$cookies.globals.currentUser)
+	    			if(r[i].pseudo==JSON.parse($cookies.get("globals")).currentUser)
 	    				r.splice(i,1);		
 	    		}
 	    		$scope.allUsers = r;

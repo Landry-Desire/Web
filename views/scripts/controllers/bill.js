@@ -4,6 +4,7 @@ angular.module('Bill')
 .controller('BillCtrl', ['$scope', '$routeParams', '$http', '$cookies' ,
 	function ($scope, $routeParams,  $http, $cookies ) {
 
+		$scope.addfriend=false;
 		$scope.myBill ={}
 		$scope.friend = "";
 		$scope.left = 0;
@@ -70,35 +71,13 @@ angular.module('Bill')
 			}).error(function (r) {
 				alert('Bill not modified');
 			})
-
-			/*var params = { 
-				bill : {
-					description: $scope.myBill.description,
-					amount :$scope.myBill.amount,
-					splitType: $scope.myBill.splitType
-				},
-			}
-
-			$http.post('/bills/friendsBills/'+$scope.myBill._id, $scope.myBill)
-			.success(function (r) {
-				console.log('Bill Updated',r);
-				$scope.getBill();
-			}).error(function (r) {
-				console.log('Bill not edited',r);
-			})*/
-
 		}
-
-
-
-
-
 		$scope.getAllUsers = function(){
 			$http.get('/friends/mine')
 			.success(function(r){
 				r = r.data.friends;
 				for(var i in r){
-					if(r[i]===$cookies.globals.currentUser)
+					if(r[i].pseudo==JSON.parse($cookies.get("globals")).currentUser)
 						r.splice(i,1);		
 				}
 				$scope.allUsers = r;

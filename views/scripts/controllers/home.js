@@ -29,7 +29,7 @@ angular.module('Home')
 		$http.get('/bills/RecupBills')
 		.success(function(r){
 			for(var i in r){
-				if(r[i].pseudo==$cookies.globals.currentUser)
+				if(r[i].pseudo==JSON.parse($cookies.get("globals")).currentUser)
 					r.splice(i,1);		
 			}
 			//alert("ALL BILLS :"+JSON.stringify(r.message))

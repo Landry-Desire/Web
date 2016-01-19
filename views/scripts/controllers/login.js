@@ -18,8 +18,8 @@ angular.module('Login')
     	});
     }
   }])
-  .factory('LoginService',['$http','$rootScope' ,'$cookies'
-  	,function($http, $rootScope,$cookies){
+  .factory('LoginService',['$http','$rootScope' ,'$cookies','$cookieStore'
+  	,function($http, $rootScope,$cookies, $cookieStore){
   		var service = {};
   		service.login = function(email, pwd, cb){
         console.log(email,pwd);
@@ -37,11 +37,14 @@ angular.module('Login')
   			$rootScope.globals = {
                 currentUser: user
             };
+            $cookies.put("globals",$rootScope.globals)
+            $cookieStore.put("globals",$rootScope.globals)
             $cookies.globals = $rootScope.globals;
             
   		}
   		service.destroySession = function(){
   			$rootScope.globals= {}
+  			$cookies.remove('globals');
   			$cookieStore.remove('globals');
   		}
   		
