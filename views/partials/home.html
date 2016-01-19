@@ -11,23 +11,22 @@
 					<form class="form-horizontal" role="form" name="form">
 						<div class="form-group">
 							<label for="title" class="control-label"> Description</label>
-							<input type="text" class="form-control" ng-model="bill.description" id="description" placeholder="description">
+							<input type="text" class="form-control" ng-model="bill.description" id="description" placeholder="description" required>
 						</div>
 						<div class="form-group ">
 							<label for="price" class="control-label"> Amount </label>
-							<input type="number" class="form-control" style="width:30%" ng-model="bill.amount" id="price" placeholder="Amount">
+							<input type="number" class="form-control" style="width:30%" ng-model="bill.amount" id="price" placeholder="Amount" required>
 						</div>
 
 						<div class="form-group ">
 							<label for="surface" class="control-label"> SplitType </label>
-							<select class="selectpicker form-control" style="width:30%" ng-model="bill.SplitType">
+							<select class="selectpicker form-control" style="width:30%" ng-model="bill.splitType" required>
 								<option value="EQUAL">Equal split</option>
 								<option value="PART">PART split</option>
 							</select>
 						</div>
 						<br> 
-						<button class="btn btn-default" type="submit" ng-click="addBill()">Post</button>
-
+						<button class="btn btn-default" data-dismiss="modal" type="submit" ng-click="addBill()">Post</button>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -39,18 +38,20 @@
 	<div  id="list-bills" >
 		<h2>MY BILLS</h2>
 		<ul class="list-group" ng-repeat="bill in allBills.success">
-			<a ng-click="billDetails(bill._id)" title="bill.description" style="text-decoration :none" >
+			
 				
 				<li class="list-group-item"> 
 
 					<h3>
-						{{bill.description}}
-					</h3> <br>
+						<a ng-click="billDetails(bill._id)" title="bill.description" style="text-decoration :none" >
+							{{bill.description}}
+						</a>
+					</h3>
 					{{bill.amount}} &nbsp;&euro;<br>
 					{{bill.splitType}} Splits
 
 				</li>
-			</a>
+			
 
 		</ul>
 	</div>

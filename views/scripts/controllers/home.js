@@ -4,8 +4,8 @@ angular.module('Home')
 .controller('HomeCtrl',["$scope","$http","$cookies",'$window',function($scope,$http,$cookies,$window){
 
 	$scope.bill ={};
-	$scope.allBills ={}
-	$scope.allUsers=[]
+	$scope.allBills ={};
+	$scope.allUsers=[];
 
 	$scope.addBill=function(){
 		var params ={ 
@@ -13,6 +13,7 @@ angular.module('Home')
 			amount :$scope.bill.amount,
 			splitType: $scope.bill.splitType
 		}
+		console.log(params);
 		$http.post('/bills/AddBills',params)
 		.success(function (r) {
 			alert('Bill added',r);

@@ -40,8 +40,8 @@
 
  	$scope.isNotConnected = function(){
     // console.log(( $cookies.globals == undefined || $cookies.globals == {}));
-    return( $cookies.globals == undefined || $cookies.globals == {});
-}
+        return($cookies.globals == undefined || $cookies.globals == {});
+    }
 
 }])
  .config(function ($routeProvider) {

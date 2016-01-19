@@ -5,7 +5,7 @@ var router = express.Router();
 var User = require('../model/userModel').User;
 
 router.get('/all', function(req, res, next) {
-	console.log(">>>/all");
+	/*console.log(">>>/all");*/
 	User.find({},{pseudo:1},function(err,r){
 		if(err)
 			res.send(err);
@@ -24,14 +24,14 @@ router.get('/signup',function (req, res, next) {
 
 router.put('/',function (req,res,next) {
 	var user = req.body;
-	console.log(user);
-	User.update({'pseudo':user.pseudo},
+	/*console.log(user);
+*/	User.update({'pseudo':user.pseudo},
 		{
 			$set : {"friends":user.friends}	
 		},function (err, r) {
 			if(err){
-				console.log('err',err);
-				res.send({'error':err});
+/*				console.log('err',err);
+*/				res.send({'error':err});
 			}
 			res.send(r);
 		});
@@ -70,16 +70,16 @@ router.post('/signup',function (req, res, next) {
 
 router.post('/login',function(req,res,next){
 	var users = req.body;
-	console.log(users);
-	User.findOne({'pseudo':users.pseudo},function(err,user){
+/*	console.log(users);
+*/	User.findOne({'pseudo':users.pseudo},function(err,user){
 		if(err)
 			return res.send({
 				'message':err,
 				'success':false
 			}); 
 		if(user){
-			console.log('u',user)
-			if(user.password==users.password){
+/*			console.log('u',user)
+*/			if(user.password==users.password){
 				req.session.user = user;
 				req.session.pseudo = user.pseudo;
 				res.send({
