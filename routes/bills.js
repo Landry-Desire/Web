@@ -6,53 +6,89 @@ var User = require('../model/userModel').User;
 
 //Creation Bills
 router.post('/AddBills', function(req,res){
-  var userBodyBills =  req.body
+  'use strict';
+  /*console.log(req.body);*/
+  var userBodyBills =  req.body;
+  userBodyBills.split = [];
+  userBodyBills.mine = true;
+  if(userBodyBills.splitType === "EQUAL"){
+    userBodyBills.split.push({ pseudo : req.session.pseudo, part : 1 });
+  }
+  else{
+    userBodyBills.split.push({ pseudo : req.session.pseudo, part: userBodyBills.amount});
+  }
   console.log("body",userBodyBills);
-   User.findOne({'pseudo':req.session.pseudo},function(err,u){
-    console.log(" req.session.pseudo ", req.session.pseudo);
-    console.log("user",u);
-      if(err)
-        res.send({
-          'message':err,
-          'success':false
-       });
+   User.findOne({pseudo:req.session.pseudo},function(err,u){
+      if(err){
+        return res.send({
+          message:err,
+          success:false
+        });
+      }
       if(!u){
         res.send({
-            'message':'user not exists',
-            'success':false
+            message:'user not exists',
+            success:false
         });
       }else{
-        console.log('Adding Bill',u,userBodyBills);
           u.bills.push(userBodyBills);
           u.save(function (err) {
-            if (err)
+            if (err){
               res.send({
-                'message':err,
-                'success':false
+                message:err,
+                success:false
               });
-            else
+            }
+            else{
               res.send({
-               'success':true
-        });
-      });   
+               success:true
+              });
+            }
+      });
     }
    });
 });
 
-//Recuperation des bills
 router.get('/RecupBills',function(req,res){
-  req.session.pseudo
-  User.findOne({'pseudo':req.session.pseudo},function(err,user){
-    if (err) 
+  'use strict';
+  User.findOne({pseudo:req.session.pseudo},function(err,user){
+    if(err){
       res.send({
-        "message" : err,
-    });
-    if (user)
-      res.send({
-        "message":'ok',
-        "success":user.bills
+        message : err
       });
+    }
+    if (user){
+      res.send({
+        message:'ok',
+        success:user.bills
+      });
+    }
   });
 });
 
+router.put('/',function (req,res) {
+  var bill = req.body;
+  console.log(bill);
+  for(var i in bill.split){
+    User.findOne({'pseudo':bill.split[i].pseudo},function (e,u) {
+      var done = false;
+      for(var j in u.bills){
+        if(u.bills[j]==bill._id){
+          u.bills[j] = bill;
+          done = true;
+        }
+      }
+      if(!done){
+        u.bills.push(bill);
+      }
+      u.save(function (e) {
+        if(e){
+          console.log(e);
+          throw e;
+        }
+      });
+    });
+  }
+  res.send({'msg':'done'});
+});
 module.exports = router;

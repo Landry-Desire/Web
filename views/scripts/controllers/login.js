@@ -4,16 +4,25 @@ angular.module('Login')
   .controller('LoginCtrl', ['$scope', '$window', 'LoginService', function ($scope, $window, LoginService) {
     $scope.email = "psow";
     $scope.pwd = "passer33";
-    $scope.signin = function(){
+    $scope.login = function(){
     	LoginService.login($scope.email,$scope.pwd,function(response){
-    		$window.location.href="#/home"
+        console.log($scope.email,$scope.pwd);
+        if(response.success){
+          console.log(response.message);
+          $window.location.href="#/home"
+        }else{
+          alert(response.message);
+          console.log(response.message);
+        }
+          
     	});
     }
   }])
-  .factory('LoginService',['$http','$rootScope' ,'$cookies'
-  	,function($http, $rootScope,$cookies){
+  .factory('LoginService',['$http','$rootScope' ,'$cookies','$cookieStore'
+  	,function($http, $rootScope,$cookies, $cookieStore){
   		var service = {};
   		service.login = function(email, pwd, cb){
+        console.log(email,pwd);
   			$http.post('/users/login/',{
   				"pseudo": email,
   				"password":pwd
@@ -28,11 +37,14 @@ angular.module('Login')
   			$rootScope.globals = {
                 currentUser: user
             };
+            $cookies.put("globals",$rootScope.globals)
+            $cookieStore.put("globals",$rootScope.globals)
             $cookies.globals = $rootScope.globals;
             
   		}
   		service.destroySession = function(){
   			$rootScope.globals= {}
+  			$cookies.remove('globals');
   			$cookieStore.remove('globals');
   		}
   		

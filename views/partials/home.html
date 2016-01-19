@@ -1,10 +1,5 @@
-<div id="homePanel">
-{{tet}}
-
-
-	<button class="btn btn-defaut btn-xs"><span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#myModal"> add bill</span></button> 
-
-
+<div id="homePanel" ng-controller="HomeCtrl">
+	<button class="btn btn-default"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"> add bill</span></button> 
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -16,44 +11,48 @@
 					<form class="form-horizontal" role="form" name="form">
 						<div class="form-group">
 							<label for="title" class="control-label"> Description</label>
-							<input type="text" class="form-control" ng-model="title" id="title" placeholder="Title">
+							<input type="text" class="form-control" ng-model="bill.description" id="description" placeholder="description" required>
 						</div>
 						<div class="form-group ">
 							<label for="price" class="control-label"> Amount </label>
-							<input type="text" class="form-control" style="width:30%" ng-model="prix" id="price" placeholder="Price">
+							<input type="number" class="form-control" style="width:30%" ng-model="bill.amount" id="price" placeholder="Amount" required>
 						</div>
+
 						<div class="form-group ">
 							<label for="surface" class="control-label"> SplitType </label>
-							<input type="text" class="form-control" style="width:30%" ng-model="surface" id="surface" placeholder="Surface">
+							<select class="selectpicker form-control" style="width:30%" ng-model="bill.splitType" required>
+								<option value="EQUAL">Equal split</option>
+								<option value="PART">PART split</option>
+							</select>
 						</div>
+						<br> 
+						<button class="btn btn-default" data-dismiss="modal" type="submit" ng-click="addBill()">Post</button>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button class="btn btn-default" type="submit" ng-click="putA()">Post</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
 	<div  id="list-bills" >
-		<ul class="list-group" ng-repeat="bill in bills">
-			<li class="list-group-item">{{bill.description}}</li>
+		<h2>MY BILLS</h2>
+		<ul class="list-group" ng-repeat="bill in allBills.success">
+			
+				
+				<li class="list-group-item"> 
+
+					<h3>
+						<a ng-click="billDetails(bill._id)" title="bill.description" style="text-decoration :none" >
+							{{bill.description}}
+						</a>
+					</h3>
+					{{bill.amount}} &nbsp;&euro;<br>
+					{{bill.splitType}} Splits
+
+				</li>
+			
+
 		</ul>
-
 	</div>
-
-
-
-
-
 </div>
-
-
-

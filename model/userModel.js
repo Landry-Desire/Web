@@ -8,7 +8,7 @@ var UserSch = new Schema({
 	bills : [
 		{
 			description : String,
-			mine : Boolean,
+			mine : {type : Boolean, default:true},
 			amount : Number,
 			splitType : String,
 			split : [

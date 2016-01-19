@@ -21,7 +21,7 @@
 
     <!-- Add your site or application content here -->
     <div class="header" ng-controller="HeaderCtrl">
-      <div class="navbar navbar-default" role="navigation">
+      <div class="navbar navbar-default" role="navigation" ng-hide="isNotConnected()">
         <div class="container">
           <div class="navbar-header">
 
@@ -39,8 +39,8 @@
 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/home">Home</a></li>
-              <li><a ng-href="#/friends">Friends</a></li>
-              <li><a ng-href="#/profile">Profile Management</a></li>
+              <li ><a ng-href="#/friends">Friends</a></li>
+              <li><a ng-href="#/profile" >Profile Management</a></li>
               <li><a ng-href="#" ng-click="logout()"><span class="glyphicon glyphicon-off"></span></a></li>
             </ul>
           </div>
@@ -64,6 +64,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/home.js"></script>
+        <script src="scripts/controllers/bill.js"></script>
         <script src="scripts/controllers/signup.js"></script>
         <script src="scripts/controllers/friends.js"></script>
 </body>

@@ -5,7 +5,7 @@ var router = express.Router();
 var User = require('../model/userModel').User;
 
 router.use(function (req,res,next) {
-	console.log('req',req);
+	/*console.log('req',req);*/
 	if(req.session.pseudo)
 		next();
 	else
@@ -16,9 +16,9 @@ router.use(function (req,res,next) {
 });
 
 router.get('/mine', function(req, res, next) {
-	console.log('user.findOne');
+	/*console.log('user.findOne');*/
 	User.findOne({'pseudo':req.session.pseudo},function (err,user) {
-		console.log('user.findOne',user);
+		/*console.log('user.findOne',user);*/
 		if(err)
 			res.send({
 			'message':err,
@@ -40,8 +40,9 @@ router.get('/mine', function(req, res, next) {
 });
 
 router.post('/add', function(req, res, next){
-	var me = req.session.pseudo;
+	var me = req.session.user.pseudo;
 	var him = req.body.pseudo;
+	/*console.log(me, him);*/
 	User.findOne({'pseudo':me}, function(err, u){
 		if(err)
 			res.send({
@@ -49,7 +50,8 @@ router.post('/add', function(req, res, next){
 		        'success':false
 		    });
 		if(u){
-			res.send(User.addFriend(u,him));
+/*			console.log('got user '+me);
+*/			res.send(User.addFriend(u,him));
 		}else{
 			res.send({
 		        'message':'user doesn\'t exist' ,
