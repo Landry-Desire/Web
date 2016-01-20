@@ -69,18 +69,24 @@ router.get('/RecupBills',function(req,res){
 router.put('/',function (req,res) {
   var bill = req.body;
   console.log(bill);
-  for(var i in bill.split){
+  for(var i=0; i<bill.split.length;i++){
     User.findOne({'pseudo':bill.split[i].pseudo},function (e,u) {
       var done = false;
-      for(var j in u.bills){
-        if(u.bills[j]==bill._id){
-          u.bills[j] = bill;
+      for(var j=0; j<u.bills.length;j++){
+        if(u.bills[j].id===bill._id){
+          console.log(u.pseudo,'have it',bill._id);
+          for(var attributes in bill){
+            u.bills[j][attributes] = bill[attributes];  
+          }
           done = true;
         }
       }
       if(!done){
+        console.log(u.pseudo,'dont have it',bill._id);
+        bill.mine = false;
         u.bills.push(bill);
       }
+      console.log('>> saving doc for ',u.pseudo);
       u.save(function (e) {
         if(e){
           console.log(e);

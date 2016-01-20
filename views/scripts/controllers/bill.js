@@ -68,6 +68,7 @@ angular.module('Bill')
 			$http.put('/bills',$scope.myBill)
 			.success(function (r) {
 				console.log(r);
+				$scope.getBill();
 			}).error(function (r) {
 				alert('Bill not modified');
 			})
