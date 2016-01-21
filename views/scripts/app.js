@@ -14,6 +14,7 @@
  angular.module('Friends',['ngCookies']);
  angular.module('Home',['ngCookies']);
  angular.module('Bill',['ngCookies']);
+  angular.module('Profile',['ngCookies']);
 
 
 
@@ -25,7 +26,8 @@
  	'Signup',
  	'Home',
  	'Friends',
- 	'Bill'
+ 	'Bill',
+ 	'Profile'
  	])
  .controller('HeaderCtrl', ['$scope','$rootScope','$window', '$cookies', function($scope,$rootScope,$window,$cookies){
 
@@ -67,6 +69,10 @@
  	.when('/signup', {
  		templateUrl: 'partials/signup.html',
  		controller: 'SignupCtrl',
+ 	})
+ 	.when('/profile', {
+ 		templateUrl: 'partials/profile.html',
+ 		controller: 'ProfileCtrl',
  	})
  	.otherwise({templateUrl: 'partials/404.html'})
  })
