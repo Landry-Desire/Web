@@ -1,6 +1,6 @@
 # Web Project
 
-Le  script de postinstall mais bien les données dans la BD mais on a toujours une exception quand on manipule ces données.
+Le  script de postinstall ajoute comme il le faut  les données dans la BD mais on a toujours une exception quand on manipule ces données. 
 Préferable d'utiliser l'application sans faire le postinstall.
 
 ##scénario 
