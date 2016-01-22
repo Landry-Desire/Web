@@ -1,92 +1,83 @@
 var psow = {
+    "_id" : "56a0ee6cfa6bdef00800b7a5",
     "password" : "passer33",
     "pseudo" : "psow",
     "bills" : [ 
         {
-            "description" : "Test Bon",
-            "amount" : 300,
+            "description" : "Test1",
+            "amount" : 350,
             "splitType" : "PART",
+            "_id" : "56a0ee7bfa6bdef00800b7a6",
             "split" : [ 
                 {
                     "pseudo" : "psow",
-                    "part" : 300,
+                    "part" : 350,
+                    "_id" : "56a0ee7bfa6bdef00800b7a7"
                 }, 
                 {
-                    "pseudo" : "ouzera",
+                    "pseudo" : "ouz",
                     "part" : 0,
+                    "_id" : "56a0eef6fa6bdef00800b7ab"
                 }
             ],
             "mine" : true
         }, 
         {
-            "description" : "another good",
-            "amount" : 200,
+            "description" : "Test 2",
+            "amount" : 400,
             "splitType" : "PART",
+            "_id" : "56a0eebbfa6bdef00800b7a8",
             "split" : [ 
                 {
-                    "pseudo" : "ouzera",
-                    "part" : 150,
-                }, 
-                {
                     "pseudo" : "psow",
-                    "part" : 50,
+                    "part" : 400,
+                    "_id" : "56a0eebbfa6bdef00800b7a9"
                 }
             ],
-            "mine" : false
+            "mine" : true
         }
     ],
     "friends" : [ 
-        "ouzera"
+        "ouz"
     ],
-    "__v" : 22
+    "__v" : 4
 };
 var ouz = {
+    "_id" : "56a0eedcfa6bdef00800b7aa",
     "password" : "passer33",
-    "pseudo" : "ouzera",
+    "pseudo" : "ouz",
     "bills" : [ 
         {
-            "description" : "Test Bon",
-            "amount" : 300,
+            "description" : "Test1",
+            "amount" : 350,
             "splitType" : "PART",
+            "_id" : "56a0ee7bfa6bdef00800b7a6",
             "split" : [ 
                 {
                     "pseudo" : "psow",
-                    "part" : 300,
+                    "part" : 350,
+                    "_id" : "56a0ee7bfa6bdef00800b7a7"
                 }, 
                 {
-                    "pseudo" : "ouzera",
+                    "pseudo" : "ouz",
                     "part" : 0,
+                    "_id" : "56a0eef6fa6bdef00800b7ac"
                 }
             ],
             "mine" : false
-        }, 
-        {
-            "description" : "another good",
-            "amount" : 200,
-            "splitType" : "PART",
-            "split" : [ 
-                {
-                    "pseudo" : "ouzera",
-                    "part" : 150,
-                }, 
-                {
-                    "pseudo" : "psow",
-                    "part" : 50,
-                }
-            ],
-            "mine" : true
         }
     ],
     "friends" : [ 
         "psow"
     ],
+    "__v" : 2
 };
 //==============================================================================
 //==============================================================================
 //==============================================================================
 var MongoClient = require("mongodb").MongoClient;
 var url = "mongodb://localhost:27017/Landry-Desire_Web";
-MongoClient.connect(url, function(err, db) {
+/*MongoClient.connect(url, function(err, db) {
     db.collection("users", function(err, users) {
         if(err)
             throw err;
@@ -104,3 +95,5 @@ MongoClient.connect(url, function(err, db) {
         
     });
 });
+*/
+console.log('Done - Type < ctrl+c >');
