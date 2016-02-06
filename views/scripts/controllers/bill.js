@@ -51,7 +51,7 @@ angular.module('Bill')
 				$scope.myBill.split.push({pseudo:$scope.friend,part:0});
 			}
 			$scope.getLeft();
-			console.log($scope.myBill);
+			console.log("the bill : "+$scope.myBill);
 		};
 		$scope.getLeft = function () {
 			var total = 0;
